@@ -105,7 +105,7 @@ function getPaymentMethodTitle(
             },
             [PaymentMethodId.ApplePay]: {
                 logoUrl: cdnPath('/modules/checkout/applepay/images/applepay-header@2x.png'),
-                titleText: '',
+                titleText: 'Apple Pay',
             },
             [PaymentMethodId.Bolt]: {
                 logoUrl: '',
@@ -121,7 +121,7 @@ function getPaymentMethodTitle(
             },
             [PaymentMethodType.GooglePay]: {
                 logoUrl: cdnPath('/img/payment-providers/google-pay.png'),
-                titleText: '',
+                titleText: 'Google Pay',
             },
             [PaymentMethodType.PayWithGoogle]: {
                 logoUrl: cdnPath('/img/payment-providers/google-pay.png'),
@@ -347,7 +347,7 @@ const PaymentMethodTitle: FunctionComponent<
 
                 {getSubtitle()}
             </div>
-            <div className="paymentProviderHeader-cc">
+            <div className="paymentProviderHeader-cc hidden">
                 <CreditCardIconList
                     cardTypes={compact(method.supportedCards.map(mapFromPaymentMethodCardType))}
                     selectedCardType={getSelectedCardType()}

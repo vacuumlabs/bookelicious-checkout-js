@@ -12,7 +12,6 @@ import React, { Component, lazy, ReactNode } from 'react';
 
 import { AnalyticsContextProps } from '@bigcommerce/checkout/analytics';
 import { ErrorLogger } from '@bigcommerce/checkout/error-handling-utils';
-import { TranslatedString } from '@bigcommerce/checkout/locale';
 import { CheckoutContextProps } from '@bigcommerce/checkout/payment-integration-api';
 
 import { withAnalytics } from '../analytics';
@@ -32,7 +31,6 @@ import {
     AccountCreationFailedError,
     AccountCreationRequirementsError,
 } from '../guestSignup/errors';
-import { Button, ButtonVariant } from '../ui/button';
 import { LazyContainer, LoadingSpinner } from '../ui/loading';
 import { MobileView } from '../ui/responsive';
 
@@ -129,7 +127,6 @@ class OrderConfirmation extends Component<
         const {
             storeProfile: { orderEmail, storePhoneNumber },
             shopperConfig,
-            links: { siteLink },
         } = config;
 
         return (
@@ -140,7 +137,7 @@ class OrderConfirmation extends Component<
             >
                 <div className="layout-main">
                     <div className="orderConfirmation">
-                        <ThankYouHeader name={order.billingAddress.firstName} />
+                        <ThankYouHeader />
 
                         <OrderStatus
                             config={config}
@@ -148,6 +145,8 @@ class OrderConfirmation extends Component<
                             supportEmail={orderEmail}
                             supportPhoneNumber={storePhoneNumber}
                         />
+                        <br />
+                        <strong>Books will be shipped directly to the school 3-4 weeks after the PopUp Shop closes.</strong>
 
                         {paymentInstructions && (
                             <OrderConfirmationSection>
@@ -166,13 +165,6 @@ class OrderConfirmation extends Component<
                             shopperConfig,
                         })}
 
-                        <div className="continueButtonContainer">
-                            <form action={siteLink} method="get" target="_top">
-                                <Button type="submit" variant={ButtonVariant.Secondary}>
-                                    <TranslatedString id="order_confirmation.continue_shopping" />
-                                </Button>
-                            </form>
-                        </div>
                     </div>
                 </div>
 

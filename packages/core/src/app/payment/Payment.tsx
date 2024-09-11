@@ -648,6 +648,16 @@ export function mapToPaymentProps({
         return true;
     });
 
+    const venmo = filteredMethods.find(method => method.id === PaymentMethodId.BraintreeVenmo);
+
+    if (venmo)
+        filteredMethods.push(filteredMethods.splice(filteredMethods.indexOf(venmo), 1)[0]);
+
+    const creditCard = filteredMethods.find(method => method.id === PaymentMethodId.Braintree);
+
+    if (creditCard) 
+        filteredMethods.push(filteredMethods.splice(filteredMethods.indexOf(creditCard), 1)[0]);
+
     if (consignments && consignments.length > 1) {
         const multiShippingIncompatibleMethodIds: string[] = [
             PaymentMethodId.AmazonPay,

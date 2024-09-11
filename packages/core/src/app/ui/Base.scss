@@ -3,3 +3,95 @@
 @import '../../scss/settings/foundation/foundation';
 
 $global-radius: 4px;
+
+
+.hidden {
+    display: none;
+}
+
+.optimizedCheckout-cart-modal, .optimizedCheckout-orderSummary {
+    background-color: #3f2088 !important;
+    color: #fff;
+    .optimizedCheckout-headingSecondary, .optimizedCheckout-contentPrimary, .optimizedCheckout-headingPrimary {
+        color: #fff;
+    }
+
+    font-family: Nunito, sans-serif;
+}
+
+.button, .optimizedCheckout-contentPrimary {
+    font-family: Nunito, sans-serif;
+}
+
+.optimizedCheckout-cart-modal{
+    border-radius: 24px;
+}
+
+.optimizedCheckout-orderSummary {
+    padding: 1.75rem;
+    border-top-left-radius: 24px;
+    border-top-right-radius: 24px;
+    border-bottom-left-radius: 0;
+    border-bottom-right-radius: 0;
+    border: 0;
+}
+
+.stepHeader {
+    padding: 0px;
+}
+
+@media (max-width: 967px) {
+    .optimizedCheckout-orderSummary {
+        margin: 0;
+    }
+}
+
+
+.checkoutHeader {
+    background-color: #3f2088 !important;
+    color: #fff;
+    border-top-left-radius: 0;
+    border-top-right-radius: 0;
+    border-bottom-left-radius: 24px;
+    border-bottom-right-radius: 24px;
+    border: 0;
+}
+
+.cart-modal-continue {
+    border-radius: 24px;
+    color: #00aaa7;
+    border: 2px solid #00aaa7;
+    background-color: #3f2088;
+    font-weight: 700;
+    font-size: 18px;
+    text-transform: none;
+    padding: 0.7rem 1.25rem;
+}
+
+a {
+    color: #00aaa7;
+}
+
+.payment-submit-button-braintree {
+    background: #000;
+    border-radius: 12px;
+    border-color: #000;
+}
+
+.payment-submit-button-braintreevenmo {
+    background: #4496f6;
+    border-radius: 12px;
+    border-color: #4496f6;
+}
+
+.payment-submit-button-braintreegooglepay {
+    background: #000;
+    border-radius: 12px;
+    border-color: #000;
+}
+
+.payment-submit-button-applepay {
+    background: #000;
+    border-radius: 12px;
+    border-color: #000;
+}

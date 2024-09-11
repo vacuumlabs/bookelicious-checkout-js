@@ -46,6 +46,7 @@ export type RedeemableProps = {
 const Redeemable: FunctionComponent<
     RedeemableProps & WithLanguageProps & FormikProps<RedeemableFormValues>
 > = ({ shouldCollapseCouponCode, showAppliedRedeemables, ...formProps }) => (
+    <div style={{display:'none'}}>
     <Toggle openByDefault={!shouldCollapseCouponCode}>
         {({ toggle, isOpen }) => (
             <>
@@ -75,6 +76,7 @@ const Redeemable: FunctionComponent<
             </>
         )}
     </Toggle>
+    </div>
 );
 
 const RedeemableForm: FunctionComponent<

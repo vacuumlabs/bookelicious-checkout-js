@@ -389,6 +389,7 @@ class Checkout extends Component<
             <CheckoutStep
                 {...step}
                 heading={<TranslatedString id="customer.customer_heading" />}
+                isHidden
                 key={step.type}
                 onEdit={this.handleEditStep}
                 onExpanded={this.handleExpanded}
@@ -445,6 +446,8 @@ class Checkout extends Component<
                             compactView={consignments.length < 2}
                             consignment={consignment}
                         />
+                        <br />
+                        <strong>Books will be shipped directly to the school 3-4 weeks after the PopUp Shop closes.</strong>
                     </div>
                 ))}
             >
@@ -496,6 +499,7 @@ class Checkout extends Component<
             <CheckoutStep
                 {...step}
                 heading={<TranslatedString id="payment.payment_heading" />}
+                isHidden={!step.isActive}
                 key={step.type}
                 onEdit={this.handleEditStep}
                 onExpanded={this.handleExpanded}

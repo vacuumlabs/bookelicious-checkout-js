@@ -19,7 +19,7 @@ interface PaymentSubmitButtonTextProps {
     isPaymentDataRequired?: boolean;
 }
 
-const providersWithCustomClasses = [PaymentMethodId.Bolt];
+const providersWithCustomClasses = [PaymentMethodId.Bolt, PaymentMethodId.ApplePay, PaymentMethodId.BraintreeGooglePay, PaymentMethodId.Braintree, PaymentMethodId.BraintreeVenmo];
 
 const PaymentSubmitButtonText: FunctionComponent<PaymentSubmitButtonTextProps> = memo(
     ({
@@ -42,6 +42,24 @@ const PaymentSubmitButtonText: FunctionComponent<PaymentSubmitButtonTextProps> =
 
         if (methodId === PaymentMethodId.AmazonPay) {
             return <TranslatedString id="payment.amazonpay_continue_action" />;
+        }
+
+        if (methodId === PaymentMethodId.ApplePay) {
+            return <img alt="Pay with Apple Pay" src="https://popupshop.bookelicious.com/content/apple_pay_logo.svg" style={{height: "26px"}}/>;
+        }
+
+        if (methodId === PaymentMethodId.BraintreeGooglePay) {
+            if (isPaymentDataRequired) return <TranslatedString id="payment.place_order_action" />;
+
+            return <img alt="Pay with Google Pay" src="https://www.gstatic.com/instantbuy/svg/dark_gpay.svg" style={{height: "26px"}}/>;
+        }
+
+        if (methodId === PaymentMethodId.Braintree) {
+            return <span><img alt="Credit card" src="https://popupshop.bookelicious.com/content/credit-card.svg" style={{height: "20px", marginBottom: "3px", paddingRight: "8px"}} />Credit Card</span>;
+        }
+
+        if (methodId === PaymentMethodId.BraintreeVenmo) {
+            return <img alt="Venmo" src="https://popupshop.bookelicious.com/content/braintree_venmo_white.svg" style={{height: "26px"}} />;
         }
 
         if (methodId === PaymentMethodId.Bolt) {

@@ -19,6 +19,7 @@ export interface CheckoutStepProps {
     type: CheckoutStepType;
     onExpanded?(step: CheckoutStepType): void;
     onEdit?(step: CheckoutStepType): void;
+    isHidden?: boolean;
 }
 
 export interface CheckoutStepState {
@@ -71,6 +72,7 @@ export default class CheckoutStep extends Component<CheckoutStepProps, CheckoutS
                     [`checkout-step--${type}`]: !!type,
                 })}
                 ref={this.containerRef}
+                style={{ display: this.props.isHidden && !isActive ? 'none' : 'block' }}
             >
                 <div className="checkout-view-header">
                     <CheckoutStepHeader

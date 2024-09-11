@@ -122,7 +122,7 @@ const renderHeader: FunctionComponent<{
     let newHeaderLink;
 
     if (isValidElement(headerLink)) {
-        newHeaderLink = cloneElement(headerLink, { className: 'modal-header-link cart-modal-link test' });
+        newHeaderLink = cloneElement(headerLink, { className: 'hidden modal-header-link cart-modal-link test' });
     }
 
     return <>

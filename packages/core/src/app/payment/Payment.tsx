@@ -3,6 +3,7 @@ import {
     CheckoutSelectors,
     CheckoutService,
     CheckoutSettings,
+    CustomerGroup,
     OrderRequestBody,
     PaymentMethod,
 } from '@bigcommerce/checkout-sdk';
@@ -55,6 +56,7 @@ export interface PaymentProps {
 interface WithCheckoutPaymentProps {
     availableStoreCredit: number;
     cartUrl: string;
+    customerGroup?: CustomerGroup;
     defaultMethod?: PaymentMethod;
     finalizeOrderError?: Error;
     isInitializingPayment: boolean;
@@ -209,6 +211,7 @@ class Payment extends Component<
                             shouldDisableSubmit={
                                 (uniqueSelectedMethodId &&
                                     shouldDisableSubmit[uniqueSelectedMethodId]) ||
+                                (rest.customerGroup?.name == 'Kids' && (!rest.isStoreCreditApplied || rest.isPaymentDataRequired())) ||
                                 undefined
                             }
                             shouldHidePaymentSubmitButton={
@@ -678,6 +681,7 @@ export function mapToPaymentProps({
         applyStoreCredit: checkoutService.applyStoreCredit,
         availableStoreCredit: customer.storeCredit,
         cartUrl: config.links.cartLink,
+        customerGroup: customer?.customerGroup || undefined,
         clearError: checkoutService.clearError,
         defaultMethod: selectedPaymentMethod || filteredMethods[0],
         finalizeOrderError: getFinalizeOrderError(),

@@ -307,6 +307,9 @@ class Checkout extends Component<
                     {this.renderContent()}
                 </div>
                 {errorModal}
+                <div className="footer"> 
+                    <p>© 2024 Bookelicious. All rights reserved.</p> 
+                </div>
             </div>
         );
     }
@@ -330,6 +333,8 @@ class Checkout extends Component<
                     <LoadingNotification isLoading={(!isShowingWalletButtonsOnTop && isPending) || extensionState.isShowingLoadingIndicator} />
 
                     <PromotionBannerList promotions={promotions} />
+
+                    <h1 id="checkout-header">Checkout</h1>
 
                     {isShowingWalletButtonsOnTop && this.state.buttonConfigs?.length > 0 && (
                         <CheckoutButtonContainer
@@ -390,6 +395,7 @@ class Checkout extends Component<
             <CheckoutStep
                 {...step}
                 heading={<TranslatedString id="customer.customer_heading" />}
+                isHidden
                 key={step.type}
                 onEdit={this.handleEditStep}
                 onExpanded={this.handleExpanded}
@@ -466,6 +472,7 @@ class Checkout extends Component<
             <CheckoutStep
                 {...step}
                 heading={<TranslatedString id="billing.billing_heading" />}
+                isHidden
                 key={step.type}
                 onEdit={this.handleEditStep}
                 onExpanded={this.handleExpanded}

@@ -79,7 +79,6 @@ const OrderStatusMessage: FunctionComponent<OrderStatusMessageProps> = ({
     orderNumber,
     orderStatus,
     supportEmail,
-    supportPhoneNumber,
 }) => {
     switch (orderStatus) {
         case 'MANUAL_VERIFICATION_REQUIRED':
@@ -113,14 +112,7 @@ const OrderStatusMessage: FunctionComponent<OrderStatusMessageProps> = ({
 
         default:
             return (
-                <TranslatedHtml
-                    data={{ orderNumber, supportEmail, supportPhoneNumber }}
-                    id={
-                        supportPhoneNumber
-                            ? 'order_confirmation.order_with_support_number_text'
-                            : 'order_confirmation.order_without_support_number_text'
-                    }
-                />
+                <div>An email has been sent to your parent containing information about your purchase.</div>
             );
     }
 };

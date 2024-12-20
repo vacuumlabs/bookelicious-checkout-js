@@ -3,3 +3,131 @@
 @import '../../scss/settings/foundation/foundation';
 
 $global-radius: 4px;
+
+.hidden {
+    display: none;
+}
+.optimizedCheckout-cart-modal, .optimizedCheckout-orderSummary {
+    background-color: #3f2088 !important;
+    color: #fff;
+    .optimizedCheckout-headingSecondary, .optimizedCheckout-contentPrimary, .optimizedCheckout-headingPrimary {
+        color: #fff;
+    }
+
+    font-family: Nunito, sans-serif;
+}
+.button, .optimizedCheckout-contentPrimary {
+    font-family: Nunito, sans-serif;
+}
+.optimizedCheckout-cart-modal{
+    border-radius: 24px;
+}
+.optimizedCheckout-orderSummary {
+    padding: 1.75rem;
+    border-radius: 24px;
+    border: 0;
+    box-shadow: 0 20px 80px -4px rgba(16, 24, 40, .2), 0 20px 40px -4px rgba(16, 24, 40, .4);
+}
+.stepHeader {
+    padding: 0px;
+}
+@media (max-width: 967px) {
+    .optimizedCheckout-orderSummary {
+        margin: 0;
+        border-bottom-left-radius: 0;
+        border-bottom-right-radius: 0;
+    }
+}
+.checkoutHeader {
+    background-color: #3f2088 !important;
+    color: #fff;
+    border: 0;
+    box-shadow: 0 10px 20px 0 rgba(38, 9, 61, .2);
+}
+.cart-modal-continue {
+    border-radius: 24px;
+    color: #00aaa7;
+    border: 2px solid #00aaa7;
+    background-color: #3f2088;
+    font-weight: 700;
+    font-size: 18px;
+    text-transform: none;
+    padding: 0.7rem 1.25rem;
+}
+a {
+    color: #00aaa7;
+}
+.payment-submit-button-braintree {
+    background: #000;
+    border-radius: 12px;
+    border-color: #000;
+}
+.payment-submit-button-braintreevenmo {
+    background: #4496f6;
+    border-radius: 12px;
+    border-color: #4496f6;
+}
+.payment-submit-button-braintreegooglepay {
+    background: #000;
+    border-radius: 12px;
+    border-color: #000;
+}
+.payment-submit-button-applepay {
+    background: #000;
+    border-radius: 12px;
+    border-color: #000;
+}
+#checkout-payment-continue {
+    background: #00aaa7;
+    border-radius: 9999px;
+    border-color: #00aaa7;
+}
+#applyRedeemableButton, .button--tertiary {
+    background: #ffffff;
+    border-radius: 9999px;
+    border-color: #aaaaaa;
+    color: #1d1b18;
+}
+#applyRedeemableButton:hover, .button--tertiary:hover {
+    color: #00aaa7;
+}
+#applyRedeemableButton {
+    height: 2.45rem;
+    padding: 0rem 2.25rem;
+}
+.redeemable-entry .form-input {
+    height: 2.45rem;
+}
+#checkout-header {
+    color: #1d1b18;
+    font-weight: 700;
+    font-size: 2.5rem;
+    line-height: 125%;
+    padding: 3rem 0;
+    margin-bottom: 0;
+    border-bottom: 1px solid #ddd;
+}
+.checkoutHeader-heading {
+    display: flex;           /* Use flexbox for centering */
+    justify-content: center;
+}
+.footer {
+    width: 100%;
+    border-top: 1px solid #ddd;
+    display: grid;
+    place-items: center;
+    padding: 1.5rem 0;
+}
+.storeCreditOverlay {
+    padding: 2rem 0;
+}
+.checkout-form .form-fieldset {
+    height: 4rem;
+}
+.continueButtonContainer button, .continueButtonContainer button:hover {
+    background: #00aaa7;
+    border-radius: 9999px;
+    border-color: #00aaa7;
+    color: #fff;
+    font-weight: 700;
+}

@@ -132,6 +132,8 @@ class OrderConfirmation extends Component<
             links: { siteLink },
         } = config;
 
+        const bookeliciousWebsite = siteLink.includes('dev') ? 'https://kids.dev.bookelicios.com' : 'https://kids.bookelicios.com';
+
         return (
             <div
                 className={classNames('layout optimizedCheckout-contentPrimary', {
@@ -167,7 +169,7 @@ class OrderConfirmation extends Component<
                         })}
 
                         <div className="continueButtonContainer">
-                            <form action={siteLink} method="get" target="_top">
+                            <form action={bookeliciousWebsite} method="get" target="_top">
                                 <Button type="submit" variant={ButtonVariant.Secondary}>
                                     <TranslatedString id="order_confirmation.continue_shopping" />
                                 </Button>

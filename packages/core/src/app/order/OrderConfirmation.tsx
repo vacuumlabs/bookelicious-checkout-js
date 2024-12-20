@@ -132,7 +132,7 @@ class OrderConfirmation extends Component<
             links: { siteLink },
         } = config;
 
-        const bookeliciousWebsite = siteLink.includes('dev') ? 'https://kids.dev.bookelicios.com' : 'https://kids.bookelicios.com';
+        const bookeliciousWebsite = siteLink.includes('dev') ? 'https://kids.dev.bookelicious.com' : 'https://kids.bookelicious.com';
 
         return (
             <div

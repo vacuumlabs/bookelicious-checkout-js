@@ -2,6 +2,48 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [1.553.2](https://github.com/bigcommerce/checkout-js/compare/v1.553.1...v1.553.2) (2025-01-08)
+
+
+### Bug Fixes
+
+* **payment:** PAYPAL-5026 updated import source for isPayPalCommerceFastlaneMethod method ([bbed00c](https://github.com/bigcommerce/checkout-js/commit/bbed00c86c961aea34bedec0f4b03493ad53176e))
+
+### [1.553.1](https://github.com/bigcommerce/checkout-js/compare/v1.553.0...v1.553.1) (2025-01-08)
+
+
+### Bug Fixes
+
+* **checkout:** CHECKOUT-8919 resolve cosmetic ui issues for new multishipping ([#2136](https://github.com/bigcommerce/checkout-js/issues/2136)) ([ac6e339](https://github.com/bigcommerce/checkout-js/commit/ac6e3390b09a8e080607b9d5380f0b2950e1a576))
+
+## [1.553.0](https://github.com/bigcommerce/checkout-js/compare/v1.552.1...v1.553.0) (2025-01-06)
+
+
+### Features
+
+* **other:** LOCAL-1444 delivery translation ([408471a](https://github.com/bigcommerce/checkout-js/commit/408471a539d3217bcc918e87bb1a017fcc4e50ca))
+
+### [1.552.1](https://github.com/bigcommerce/checkout-js/compare/v1.552.0...v1.552.1) (2024-12-26)
+
+## [1.552.0](https://github.com/bigcommerce/checkout-js/compare/v1.551.2...v1.552.0) (2024-12-26)
+
+
+### Features
+
+* **payment:** PAYPAL-4692 fixed credit card loading glitch ([a9ddd90](https://github.com/bigcommerce/checkout-js/commit/a9ddd90326d92c4eb261664ffa9892739496d5fd))
+
+### [1.551.2](https://github.com/bigcommerce/checkout-js/compare/v1.551.1...v1.551.2) (2024-12-24)
+
+### [1.551.1](https://github.com/bigcommerce/checkout-js/compare/v1.551.0...v1.551.1) (2024-12-23)
+
+## [1.551.0](https://github.com/bigcommerce/checkout-js/compare/v1.550.0...v1.551.0) (2024-12-23)
+
+
+### Features
+
+* **other:** LOCAL-1444 delivery translation ([51cd286](https://github.com/bigcommerce/checkout-js/commit/51cd28680da2d3557f7f63a5cdbcb40f875458fa))
+* **other:** LOCAL-1444 delivery translation ([#2128](https://github.com/bigcommerce/checkout-js/issues/2128)) ([5d04448](https://github.com/bigcommerce/checkout-js/commit/5d044486eb6925c7cab3aae0412ff7a0f68b22b5))
+
 ## [1.550.0](https://github.com/bigcommerce/checkout-js/compare/v1.549.0...v1.550.0) (2024-12-17)
 
 

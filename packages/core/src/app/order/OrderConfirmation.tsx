@@ -116,6 +116,16 @@ class OrderConfirmation extends Component<
                 analyticsTracker.orderPurchased();
             })
             .catch(this.handleUnhandledError);
+
+        try {
+            const link = document.createElement('link');
+
+            link.href = 'https://fonts.googleapis.com/css2?family=Nunito:wght@300;400;600;700&display=swap';
+            link.rel = 'stylesheet';
+            document.head.appendChild(link);
+        } catch (error) {
+            // siletly fail
+        }
     }
 
     render(): ReactNode {
@@ -134,7 +144,10 @@ class OrderConfirmation extends Component<
 
         const bookeliciousWebsite = siteLink.includes('dev') ? 'https://kids.dev.bookelicious.com' : 'https://kids.bookelicious.com';
 
+        const currenYear = new Date().getFullYear();
+
         return (
+            <>
             <div
                 className={classNames('layout optimizedCheckout-contentPrimary', {
                     'is-embedded': isEmbedded(),
@@ -181,6 +194,10 @@ class OrderConfirmation extends Component<
                 {this.renderOrderSummary()}
                 {this.renderErrorModal()}
             </div>
+            <div className="footer"> 
+                <p>© {currenYear} Bookelicious. All rights reserved.</p> 
+            </div>
+            </>
         );
     }
 
@@ -196,6 +213,8 @@ class OrderConfirmation extends Component<
         const { isSigningUp, hasSignedUp } = this.state;
 
         const { order } = this.props;
+
+        shouldShowPasswordForm = false;
 
         return (
             <>

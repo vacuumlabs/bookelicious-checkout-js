@@ -276,6 +276,11 @@ class Checkout extends Component<
 
             window.addEventListener('beforeunload', this.handleBeforeExit);
 
+            const link = document.createElement('link');
+
+            link.href = 'https://fonts.googleapis.com/css2?family=Nunito:wght@300;400;600;700&display=swap';
+            link.rel = 'stylesheet';
+            document.head.appendChild(link);
         } catch (error) {
             if (error instanceof Error) {
                 this.handleUnhandledError(error);
@@ -301,6 +306,8 @@ class Checkout extends Component<
             }
         }
 
+        const currenYear = new Date().getFullYear();
+
         return (
             <div className={classNames('remove-checkout-step-numbers', { 'is-embedded': isEmbedded() })} data-test="checkout-page-container" id="checkout-page-container">
                 <div className="layout optimizedCheckout-contentPrimary">
@@ -308,7 +315,7 @@ class Checkout extends Component<
                 </div>
                 {errorModal}
                 <div className="footer"> 
-                    <p>© 2024 Bookelicious. All rights reserved.</p> 
+                    <p>© {currenYear} Bookelicious. All rights reserved.</p> 
                 </div>
             </div>
         );

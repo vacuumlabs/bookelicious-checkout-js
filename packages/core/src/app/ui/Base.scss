@@ -121,7 +121,7 @@ a {
 .storeCreditOverlay {
     padding: 2rem 0;
 }
-.checkout-form .form-fieldset {
+.checkout-step--payment .checkout-form .form-fieldset {
     height: 4rem;
 }
 .continueButtonContainer button, .continueButtonContainer button:hover {
@@ -130,4 +130,7 @@ a {
     border-color: #00aaa7;
     color: #fff;
     font-weight: 700;
+}
+.optimizedCheckout-headingPrimary, .optimizedCheckout-headingSecondary, body, h1, h2, h3, h4, h5, h6, a {
+    font-family: Nunito, sans-serif !important;
 }

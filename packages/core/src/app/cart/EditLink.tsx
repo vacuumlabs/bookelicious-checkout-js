@@ -14,7 +14,12 @@ const EditLink: FunctionComponent<EditLinkProps> = ({ className, url, isMultiShi
     const [isModalOpen, setIsModalOpen] = useState(false);
 
     const gotoCartPage = () => {
-        window.location.assign(url);
+        history.back();
+    };
+
+    const handleClick = (event: React.MouseEvent<HTMLAnchorElement>) => {
+        event.preventDefault();
+        history.back();
     };
 
     if (isMultiShippingMode) {
@@ -46,6 +51,7 @@ const EditLink: FunctionComponent<EditLinkProps> = ({ className, url, isMultiShi
             data-test="cart-edit-link"
             href={url}
             id="cart-edit-link"
+            onClick={handleClick}
             target="_top"
         >
             <TranslatedString id="cart.edit_cart_action" />

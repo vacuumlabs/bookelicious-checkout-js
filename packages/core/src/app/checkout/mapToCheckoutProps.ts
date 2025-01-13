@@ -46,6 +46,7 @@ export default function mapToCheckoutProps({
     ) 
 
     return {
+        applyStoreCredit: checkoutService.applyStoreCredit,
         billingAddress: data.getBillingAddress(),
         cart: data.getCart(),
         clearError: checkoutService.clearError,

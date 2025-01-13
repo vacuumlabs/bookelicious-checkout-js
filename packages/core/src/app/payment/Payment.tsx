@@ -118,14 +118,8 @@ class Payment extends Component<
             onFinalize = noop,
             onFinalizeError = noop,
             onReady = noop,
-            usableStoreCredit,
             checkoutServiceSubscribe,
         } = this.props;
-
-
-        if (usableStoreCredit) {
-            this.handleStoreCreditChange(true);
-        }
 
         await this.loadPaymentMethodsOrThrow();
 

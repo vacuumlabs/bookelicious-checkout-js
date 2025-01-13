@@ -127,6 +127,7 @@ export interface CheckoutState {
 }
 
 export interface WithCheckoutProps {
+    applyStoreCredit(useStoreCredit: boolean): Promise<CheckoutSelectors>;
     billingAddress?: Address;
     cart?: Cart;
     consignments?: Consignment[];
@@ -192,6 +193,7 @@ class Checkout extends Component<
             loadCheckout,
             loadPaymentMethodByIds,
             subscribeToConsignments,
+            applyStoreCredit,
         } = this.props;
 
         try {
@@ -276,6 +278,19 @@ class Checkout extends Component<
 
             window.addEventListener('beforeunload', this.handleBeforeExit);
 
+            // include custom nunito font
+            const link = document.createElement('link');
+
+            link.href = 'https://fonts.googleapis.com/css2?family=Nunito:wght@300;400;600;700&display=swap';
+            link.rel = 'stylesheet';
+            document.head.appendChild(link);
+
+            // disable store credit automatic application if there are FSC items in the cart
+            data.getCart()?.lineItems.digitalItems.forEach((item) => {
+                if (['FSC25', 'FSC50', 'FSC75', 'FSC100'].includes(item.sku)) {
+                    applyStoreCredit(false);
+                }
+            });
         } catch (error) {
             if (error instanceof Error) {
                 this.handleUnhandledError(error);
@@ -301,12 +316,17 @@ class Checkout extends Component<
             }
         }
 
+        const currenYear = new Date().getFullYear();
+
         return (
             <div className={classNames('remove-checkout-step-numbers', { 'is-embedded': isEmbedded() })} data-test="checkout-page-container" id="checkout-page-container">
                 <div className="layout optimizedCheckout-contentPrimary">
                     {this.renderContent()}
                 </div>
                 {errorModal}
+                <div className="footer"> 
+                    <p>© {currenYear} Bookelicious. All rights reserved.</p> 
+                </div>
             </div>
         );
     }

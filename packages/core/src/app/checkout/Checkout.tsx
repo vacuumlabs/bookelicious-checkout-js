@@ -390,6 +390,7 @@ class Checkout extends Component<
             <CheckoutStep
                 {...step}
                 heading={<TranslatedString id="customer.customer_heading" />}
+                isHidden
                 key={step.type}
                 onEdit={this.handleEditStep}
                 onExpanded={this.handleExpanded}

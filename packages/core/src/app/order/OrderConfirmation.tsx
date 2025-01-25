@@ -144,6 +144,8 @@ class OrderConfirmation extends Component<
 
         const currenYear = new Date().getFullYear();
 
+        const bookeliciousWebsite = siteLink.includes('dev') ? 'https://dev.bookelicious.com' : 'https://www.bookelicious.com';
+
         return (
         <>
             <div
@@ -180,7 +182,7 @@ class OrderConfirmation extends Component<
                         })}
 
                         <div className="continueButtonContainer">
-                            <form action={siteLink} method="get" target="_top">
+                            <form action={bookeliciousWebsite} method="get" target="_top">
                                 <Button type="submit" variant={ButtonVariant.Secondary}>
                                     <TranslatedString id="order_confirmation.continue_shopping" />
                                 </Button>

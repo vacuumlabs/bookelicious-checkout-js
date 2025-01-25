@@ -52,7 +52,6 @@ const GuestForm: FunctionComponent<
     continueAsGuestButtonLabelId,
     isLoading,
     onChangeEmail,
-    onShowLogin,
     privacyPolicyUrl,
     requiresMarketingConsent,
     isExpressPrivacyPolicy,
@@ -110,21 +109,6 @@ const GuestForm: FunctionComponent<
 
                 {privacyPolicyUrl && (
                     <PrivacyPolicyField isExpressPrivacyPolicy={isExpressPrivacyPolicy} url={privacyPolicyUrl} />
-                )}
-
-                {!isLoading && (
-                    <p>
-                        <TranslatedString id="customer.login_text" />{' '}
-                        <a
-                            data-test="customer-continue-button"
-                            id="checkout-customer-login"
-                            onClick={onShowLogin}
-                            role="button"
-                            tabIndex={0}
-                        >
-                            <TranslatedString id="customer.login_action" />
-                        </a>
-                    </p>
                 )}
 
                 {checkoutButtons}

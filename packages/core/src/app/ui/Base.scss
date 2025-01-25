@@ -77,10 +77,15 @@ a {
     border-radius: 12px;
     border-color: #000;
 }
-#checkout-payment-continue {
+#checkout-payment-continue, .button--primary {
     background: #00aaa7;
     border-radius: 9999px;
     border-color: #00aaa7;
+}
+#checkout-payment-continue:disabled {
+    background-color: #fff;
+    border-color: #aaa;
+    color: #aaa;
 }
 #applyRedeemableButton, .button--tertiary {
     background: #ffffff;

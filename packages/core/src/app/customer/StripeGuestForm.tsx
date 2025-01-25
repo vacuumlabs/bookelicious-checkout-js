@@ -39,7 +39,6 @@ const StripeGuestForm: FunctionComponent<StripeGuestFormProps & FormikProps<Gues
     isExpressPrivacyPolicy,
     deinitialize,
     onChangeEmail,
-    onShowLogin,
     onContinueAsGuest,
     canSubscribe,
     checkoutButtons,
@@ -222,21 +221,6 @@ const StripeGuestForm: FunctionComponent<StripeGuestFormProps & FormikProps<Gues
                             <PrivacyPolicyField isExpressPrivacyPolicy={isExpressPrivacyPolicy} url={privacyPolicyUrl} />
                         )}
 
-                        {
-                            !isLoading && <p>
-                                <TranslatedString id="customer.login_text"/>
-                                { ' ' }
-                                <a
-                                    data-test="customer-continue-button"
-                                    id="checkout-customer-login"
-                                    onClick={ onShowLogin }
-                                    role="button"
-                                    tabIndex={0}
-                                >
-                                    <TranslatedString id="customer.login_action"/>
-                                </a>
-                            </p>
-                        }
                         { !authentication && checkoutButtons }
                     </Fieldset>
                 </div>

@@ -285,12 +285,8 @@ class Checkout extends Component<
             link.rel = 'stylesheet';
             document.head.appendChild(link);
 
-            // disable store credit automatic application if there are FSC items in the cart
-            data.getCart()?.lineItems.digitalItems.forEach((item) => {
-                if (['FSC25', 'FSC50', 'FSC75', 'FSC100'].includes(item.sku)) {
-                    applyStoreCredit(false);
-                }
-            });
+            // disable store credit automatic application
+            applyStoreCredit(false);
         } catch (error) {
             if (error instanceof Error) {
                 this.handleUnhandledError(error);
@@ -350,6 +346,8 @@ class Checkout extends Component<
                     <LoadingNotification isLoading={(!isShowingWalletButtonsOnTop && isPending) || extensionState.isShowingLoadingIndicator} />
 
                     <PromotionBannerList promotions={promotions} />
+
+                    <h1 id="checkout-header">Checkout</h1>
 
                     {isShowingWalletButtonsOnTop && this.state.buttonConfigs?.length > 0 && (
                         <CheckoutButtonContainer

@@ -1,4 +1,4 @@
-import { PaymentMethod } from '@bigcommerce/checkout-sdk';
+import {CustomerGroup, PaymentMethod} from '@bigcommerce/checkout-sdk';
 import { FormikProps, withFormik, WithFormikConfig } from 'formik';
 import { isNil, noop, omitBy } from 'lodash';
 import React, { FunctionComponent, memo, useCallback, useContext, useMemo } from 'react';
@@ -25,6 +25,7 @@ import { StoreCreditField, StoreCreditOverlay } from './storeCredit';
 
 export interface PaymentFormProps {
     availableStoreCredit?: number;
+    customerGroup?: CustomerGroup;
     defaultGatewayId?: string;
     defaultMethodId: string;
     didExceedSpamLimit?: boolean;
@@ -54,6 +55,7 @@ const PaymentForm: FunctionComponent<
     PaymentFormProps & FormikProps<PaymentFormValues> & WithLanguageProps
 > = ({
     availableStoreCredit = 0,
+    customerGroup,
     didExceedSpamLimit,
     isEmbedded,
     isInitializingPayment,
@@ -114,6 +116,8 @@ const PaymentForm: FunctionComponent<
         );
     }
 
+    const isPaymentDisabled = customerGroup?.name == 'Kids'
+
     return (
         <Form className="checkout-form" testId="payment-form">
             {usableStoreCredit > 0 && (
@@ -129,6 +133,7 @@ const PaymentForm: FunctionComponent<
             <PaymentMethodListFieldset
                 isEmbedded={isEmbedded}
                 isInitializingPayment={isInitializingPayment}
+                isPaymentDisabled={isPaymentDisabled}
                 isPaymentDataRequired={isPaymentDataRequired}
                 isUsingMultiShipping={isUsingMultiShipping}
                 methods={methods}
@@ -178,6 +183,7 @@ const PaymentMethodSubmitButtonContainer: FunctionComponent = () => {
 interface PaymentMethodListFieldsetProps {
     isEmbedded?: boolean;
     isInitializingPayment?: boolean;
+    isPaymentDisabled: boolean;
     isUsingMultiShipping?: boolean;
     methods: PaymentMethod[];
     values: PaymentFormValues;
@@ -190,6 +196,7 @@ interface PaymentMethodListFieldsetProps {
 const PaymentMethodListFieldset: FunctionComponent<PaymentMethodListFieldsetProps> = ({
     isEmbedded,
     isInitializingPayment,
+    isPaymentDisabled,
     isPaymentDataRequired,
     isUsingMultiShipping,
     methods,
@@ -230,7 +237,7 @@ const PaymentMethodListFieldset: FunctionComponent<PaymentMethodListFieldsetProp
 
     return (
         <Fieldset>
-            {!isPaymentDataRequired() && <StoreCreditOverlay />}
+            {(isPaymentDisabled || !isPaymentDataRequired()) && <StoreCreditOverlay isPaymentDisabled={isPaymentDisabled} />}
 
             <PaymentMethodList
                 isEmbedded={isEmbedded}

@@ -131,7 +131,7 @@
     "circular-dependency-plugin": "^5.2.0",
     "conventional-recommended-bump": "^6.0.0",
     "core-js": "^3.1.4",
-    "css-loader": "^3.1.0",
+    "css-loader": "^7.1.2",
     "dotenv": "^16.0.0",
     "ejs": "^3.1.10",
     "enzyme": "^3.10.0",

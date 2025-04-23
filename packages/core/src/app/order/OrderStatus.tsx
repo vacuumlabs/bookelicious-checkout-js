@@ -53,13 +53,7 @@ const OrderStatus: FunctionComponent<OrderStatusProps> = ({
             />
             {order.hasDigitalItems && (
                 <p data-test="order-confirmation-digital-items-text">
-                    <TranslatedHtml
-                        id={
-                            order.isDownloadable
-                                ? 'order_confirmation.order_with_downloadable_digital_items_text'
-                                : 'order_confirmation.order_without_downloadable_digital_items_text'
-                        }
-                    />
+                    Directly fulfilled purchases will be processed automatically. If your Direct Item requires additional information prior to fulfillment, we will contact you via email.
                 </p>
             )}
         </OrderConfirmationSection>

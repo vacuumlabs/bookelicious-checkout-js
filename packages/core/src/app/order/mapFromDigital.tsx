@@ -28,7 +28,7 @@ function getDigitalItemDescription(item: DigitalItem): OrderSummaryItemOption {
     if (!item.downloadPageUrl) {
         return {
             testId: 'cart-item-digital-product',
-            content: <TranslatedString id="cart.digital_item_text" />,
+            content: "Direct Item",
         };
     }
 

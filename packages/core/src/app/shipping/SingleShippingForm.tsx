@@ -32,7 +32,6 @@ import { getCustomFormFieldsValidationSchema } from '../formFields';
 import { PaymentMethodId } from '../payment/paymentMethod';
 import { Fieldset, Form } from '../ui/form';
 
-import BillingSameAsShippingField from './BillingSameAsShippingField';
 import hasSelectedShippingOptions from './hasSelectedShippingOptions';
 import ShippingAddress from './ShippingAddress';
 import { SHIPPING_ADDRESS_FIELDS } from './ShippingAddressFields';

@@ -14,12 +14,13 @@ import {
  RequestOptions } from '@bigcommerce/checkout-sdk';
 import classNames from 'classnames';
 import { find, findIndex } from 'lodash';
-import React, { Component, lazy, ReactNode } from 'react';
+import React, { Component, lazy, ReactNode, useContext, useEffect } from 'react';
 
 import { AnalyticsContextProps } from '@bigcommerce/checkout/analytics';
 import { Extension, ExtensionContextProps, withExtension } from '@bigcommerce/checkout/checkout-extension';
 import { ErrorLogger } from '@bigcommerce/checkout/error-handling-utils';
 import { TranslatedString, withLanguage, WithLanguageProps } from '@bigcommerce/checkout/locale';
+import { CheckoutContext } from '@bigcommerce/checkout/payment-integration-api';
 import { AddressFormSkeleton, ChecklistSkeleton } from '@bigcommerce/checkout/ui';
 
 import { withAnalytics } from '../analytics';
@@ -41,6 +42,7 @@ import { SubscribeSessionStorage } from '../customer/SubscribeSessionStorage';
 import { EmbeddedCheckoutStylesheet, isEmbedded } from '../embeddedCheckout';
 import { PromotionBannerList } from '../promotion';
 import { hasSelectedShippingOptions, isUsingMultiShipping, ShippingSummary } from '../shipping';
+import { ShippingProps, WithCheckoutShippingProps } from '../shipping/Shipping';
 import { ShippingOptionExpiredError } from '../shipping/shippingOption';
 import { LazyContainer, LoadingNotification, LoadingOverlay } from '../ui/loading';
 import { MobileView } from '../ui/responsive';
@@ -102,6 +104,22 @@ const Shipping = lazy(() =>
     ),
 );
 
+const CustomShipping = (props: ShippingProps & Partial<WithCheckoutShippingProps> & {deleteFieldsOnLoad?: boolean}) => {
+
+    const checkoutContext = useContext(CheckoutContext);
+
+    useEffect(() => {
+        if (props.deleteFieldsOnLoad) {
+            checkoutContext?.checkoutService.updateShippingAddress({
+                address1: '', 
+                address2: '',
+            });
+        }
+    }, [props.deleteFieldsOnLoad])
+    
+    return <Shipping {...props} />
+}
+
 export interface CheckoutProps {
     checkoutId: string;
     containerId: string;
@@ -124,6 +142,7 @@ export interface CheckoutState {
     hasSelectedShippingOptions: boolean;
     isSubscribed: boolean;
     buttonConfigs: PaymentMethod[];
+    shippingAddressEditClickCount: number;
 }
 
 export interface WithCheckoutProps {
@@ -167,6 +186,7 @@ class Checkout extends Component<
         hasSelectedShippingOptions: false,
         isSubscribed: false,
         buttonConfigs: [],
+        shippingAddressEditClickCount: 0,
     };
 
     private embeddedMessenger?: EmbeddedCheckoutMessenger;
@@ -444,11 +464,15 @@ class Checkout extends Component<
 
     private renderShippingStep(step: CheckoutStepStatus): ReactNode {
         const { hasCartChanged, cart, consignments = [], isNewMultiShippingUIEnabled } = this.props;
-
-        const { isBillingSameAsShipping, isMultiShippingMode } = this.state;
+        const { isBillingSameAsShipping, isMultiShippingMode, shippingAddressEditClickCount } = this.state;
 
         if (!cart) {
             return;
+        }
+
+        const handleOnExpanded = (step: CheckoutStepType) => {
+            this.handleExpanded(step);
+            this.setState(prev => ({shippingAddressEditClickCount: prev.shippingAddressEditClickCount + 1}));
         }
 
         return (
@@ -457,12 +481,13 @@ class Checkout extends Component<
                 heading={<TranslatedString id="shipping.shipping_heading" />}
                 key={step.type}
                 onEdit={this.handleEditStep}
-                onExpanded={this.handleExpanded}
-                summary={<ShippingSummary cart={cart} consignments={consignments} isMultiShippingMode={isMultiShippingMode} isNewMultiShippingUIEnabled={isNewMultiShippingUIEnabled} />}
+                onExpanded={handleOnExpanded}
+                summary={<ShippingSummary cart={cart} consignments={consignments} hideFullAddress={shippingAddressEditClickCount === 0} isMultiShippingMode={isMultiShippingMode} isNewMultiShippingUIEnabled={isNewMultiShippingUIEnabled} />}
             >
                 <LazyContainer loadingSkeleton={<AddressFormSkeleton />}>
-                    <Shipping
+                    <CustomShipping
                         cartHasChanged={hasCartChanged}
+                        deleteFieldsOnLoad={shippingAddressEditClickCount === 0}
                         isBillingSameAsShipping={isBillingSameAsShipping}
                         isMultiShippingMode={isMultiShippingMode}
                         navigateNextStep={this.handleShippingNextStep}

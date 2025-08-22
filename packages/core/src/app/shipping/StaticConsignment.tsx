@@ -13,12 +13,14 @@ interface StaticConsignmentProps {
     consignment: Consignment;
     cart: Cart;
     compactView?: boolean;
+    hideFullAddress?: boolean;
 }
 
 const StaticConsignment: FunctionComponent<StaticConsignmentProps> = ({
     consignment,
     cart,
     compactView,
+    hideFullAddress
 }) => {
     const { paypalFastlaneAddresses } = usePayPalFastlaneAddress();
     const { shippingAddress: address, selectedShippingOption } = consignment;
@@ -26,7 +28,7 @@ const StaticConsignment: FunctionComponent<StaticConsignmentProps> = ({
 
     return (
         <div className="staticConsignment">
-            <StaticAddress address={address} type={AddressType.Shipping} />
+            <StaticAddress address={address} hideFullAddress={hideFullAddress} type={AddressType.Shipping} />
 
             {showPayPalFastlaneAddressLabel && <PoweredByPayPalFastlaneLabel />}
 

@@ -164,11 +164,6 @@ class SingleShippingForm extends PureComponent<
         const { isResettingAddress, isUpdatingShippingData, hasRequestedShippingOptions } =
             this.state;
 
-        const PAYMENT_METHOD_VALID = ['amazonpay'];
-        const shouldShowBillingSameAsShipping = !PAYMENT_METHOD_VALID.some(
-            (method) => method === methodId,
-        );
-
         return (
             <Form autoComplete="on">
                 <Fieldset>
@@ -194,11 +189,6 @@ class SingleShippingForm extends PureComponent<
                         shouldShowSaveAddress={shouldShowSaveAddress}
                         validateAddressFields={validateAddressFields}
                     />
-                    {shouldShowBillingSameAsShipping && (
-                        <div className="form-body">
-                            <BillingSameAsShippingField />
-                        </div>
-                    )}
                 </Fieldset>
 
                 <ShippingFormFooter

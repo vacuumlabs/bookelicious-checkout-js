@@ -11,13 +11,15 @@ interface ShippingSummaryProps {
     isMultiShippingMode: boolean;
     consignments: Consignment[];
     cart: Cart;
+    hideFullAddress?: boolean;
 }
 
 const ShippingSummary: FunctionComponent<ShippingSummaryProps> = ({
     isNewMultiShippingUIEnabled,
     isMultiShippingMode,
     consignments,
-    cart
+    cart,
+    hideFullAddress = false
 }) => {
     if (isNewMultiShippingUIEnabled && isMultiShippingMode) {
         return (
@@ -28,6 +30,7 @@ const ShippingSummary: FunctionComponent<ShippingSummaryProps> = ({
                             cart={cart}
                             consignment={consignment}
                             consignmentNumber={index + 1}
+                            hideFullAddress={hideFullAddress}
                         />
                     </div>
                 ))}
@@ -43,6 +46,7 @@ const ShippingSummary: FunctionComponent<ShippingSummaryProps> = ({
                         cart={cart}
                         compactView={consignments.length < 2}
                         consignment={consignment}
+                        hideFullAddress={hideFullAddress}
                     />
                 </div>
             ))}

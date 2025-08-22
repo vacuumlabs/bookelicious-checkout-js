@@ -15,12 +15,14 @@ interface StaticMultiConsignmentProps {
     consignment: Consignment;
     cart: Cart;
     consignmentNumber: number;
+    hideFullAddress?: boolean;
 }
 
 const StaticMultiConsignment: FunctionComponent<StaticMultiConsignmentProps> = ({
     consignment,
     cart,
     consignmentNumber,
+    hideFullAddress = false
 }) => {
     const {
         checkoutState: {
@@ -47,12 +49,12 @@ const StaticMultiConsignment: FunctionComponent<StaticMultiConsignmentProps> = (
                     <span className="family-name">{address.lastName}</span>
                 </p>
                 <div className="address-details">
-                    <p className="street-address address-entry">
+                    {!hideFullAddress && <p className="street-address address-entry">
                         <span className="address-line-1">{`${address.address1}`}</span>
                         {address.address2 && (
                             <span className="address-line-2">{`, ${address.address2}`}</span>
                         )}
-                    </p>
+                    </p>}
 
                     <p className="address-entry">
                         {address.city && <span className="locality">{`${address.city}`}</span>}

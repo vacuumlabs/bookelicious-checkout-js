@@ -220,7 +220,7 @@ class Shipping extends Component<ShippingProps & WithCheckoutShippingProps, Ship
                         onMultiShippingSubmit={this.handleMultiShippingSubmit}
                         onSingleShippingSubmit={this.handleSingleShippingSubmit}
                         onUseNewAddress={this.handleUseNewAddress}
-                        shouldShowSaveAddress={!isGuest}
+                        shouldShowSaveAddress={false}
                         updateAddress={updateShippingAddress}
                         validateAddressFields={validateAddressFields}
                         validateGoogleMapAutoCompleteMaxLength={validateGoogleMapAutoCompleteMaxLength}

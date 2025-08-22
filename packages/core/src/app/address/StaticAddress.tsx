@@ -21,6 +21,7 @@ import './StaticAddress.scss';
 export interface StaticAddressProps {
     address: Address;
     type?: AddressType;
+    hideFullAddress?: boolean;
 }
 
 export interface StaticAddressEditableProps extends StaticAddressProps {
@@ -40,6 +41,7 @@ const StaticAddress: FunctionComponent<
         fields,
         address: addressWithoutLocalization,
         validateAddressFields = false,
+        hideFullAddress = false,
     }) => {
     const address = localizeAddress(addressWithoutLocalization, countries);
     const isValid = isValidStaticAddress(address, validateAddressFields, fields);
@@ -61,12 +63,12 @@ const StaticAddress: FunctionComponent<
             )}
 
             <div className="adr">
-                <p className="street-address address-entry">
+                {!hideFullAddress && <p className="street-address address-entry">
                     <span className="address-line-1">{`${address.address1} `}</span>
                     {address.address2 && (
                         <span className="address-line-2">{` / ${address.address2}`}</span>
                     )}
-                </p>
+                </p>}
 
                 <p className="address-entry">
                     {address.city && <span className="locality">{`${address.city}, `}</span>}

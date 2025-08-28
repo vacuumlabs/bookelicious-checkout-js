@@ -5,6 +5,8 @@ import { localizeAddress, TranslatedString } from '@bigcommerce/checkout/locale'
 import { useCheckout } from '@bigcommerce/checkout/payment-integration-api';
 import { isPayPalFastlaneAddress, PoweredByPayPalFastlaneLabel, usePayPalFastlaneAddress } from '@bigcommerce/checkout/paypal-fastlane-integration';
 
+import { HiddenFullAddressMessage } from '../address/StaticAddress';
+
 import ConsignmentLineItemDetail from './ConsignmentLineItemDetail';
 import findLineItems from './findLineItems';
 import getLineItemsCount from './getLineItemsCount';
@@ -49,12 +51,12 @@ const StaticMultiConsignment: FunctionComponent<StaticMultiConsignmentProps> = (
                     <span className="family-name">{address.lastName}</span>
                 </p>
                 <div className="address-details">
-                    {!hideFullAddress && <p className="street-address address-entry">
+                    {!hideFullAddress ? <p className="street-address address-entry">
                         <span className="address-line-1">{`${address.address1}`}</span>
                         {address.address2 && (
                             <span className="address-line-2">{`, ${address.address2}`}</span>
                         )}
-                    </p>}
+                    </p> : <HiddenFullAddressMessage />}
 
                     <p className="address-entry">
                         {address.city && <span className="locality">{`${address.city}`}</span>}

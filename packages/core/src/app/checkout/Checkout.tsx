@@ -110,7 +110,10 @@ const CustomShipping = (props: ShippingProps & Partial<WithCheckoutShippingProps
 
     useEffect(() => {
         if (props.deleteFieldsOnLoad) {
+            const shippingAddress = checkoutContext?.checkoutState.data?.getShippingAddress();
+
             checkoutContext?.checkoutService.updateShippingAddress({
+                ...shippingAddress,
                 address1: '', 
                 address2: '',
             });

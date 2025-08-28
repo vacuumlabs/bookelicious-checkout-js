@@ -18,6 +18,10 @@ import isValidStaticAddress from './isValidStaticAddress';
 
 import './StaticAddress.scss';
 
+export const HiddenFullAddressMessage = () => (
+    <p className="hidden-full-address-message">(address hidden for privacy)</p>
+);
+
 export interface StaticAddressProps {
     address: Address;
     type?: AddressType;
@@ -63,12 +67,12 @@ const StaticAddress: FunctionComponent<
             )}
 
             <div className="adr">
-                {!hideFullAddress && <p className="street-address address-entry">
+                {!hideFullAddress ? <p className="street-address address-entry">
                     <span className="address-line-1">{`${address.address1} `}</span>
                     {address.address2 && (
                         <span className="address-line-2">{` / ${address.address2}`}</span>
                     )}
-                </p>}
+                </p> : <HiddenFullAddressMessage />}
 
                 <p className="address-entry">
                     {address.city && <span className="locality">{`${address.city}, `}</span>}

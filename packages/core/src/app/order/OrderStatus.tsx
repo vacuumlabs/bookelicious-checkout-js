@@ -53,7 +53,7 @@ const OrderStatus: FunctionComponent<OrderStatusProps> = ({
             />
             {order.hasDigitalItems && (
                 <p data-test="order-confirmation-digital-items-text">
-                    Directly fulfilled purchases will be processed automatically. If your Direct Item requires additional information prior to fulfillment, we will contact you via email.
+                    For digital products, including author events, please refer to your order confirmation email for access to your materials and any important next steps.
                 </p>
             )}
         </OrderConfirmationSection>

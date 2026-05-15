@@ -180,13 +180,25 @@ const getShippingStepStatus = createSelector(
             cart && consignments ? hasUnassignedLineItems(consignments, cart.lineItems) : true;
         const isComplete = hasAddress && hasOptions && !hasUnassignedItems;
         const isRequired = itemsRequireShipping(cart, config);
-        const isCustomShippingSelected = true;
+
+        // Popup shop: if shipping address is pre-set, lock the step so
+        // customers cannot modify the address. If address is missing
+        // (integration failure), fall back to the normal editable flow.
+        if (shippingAddress?.address1) {
+            return {
+                type: CheckoutStepType.Shipping,
+                isActive: false,
+                isComplete: true,
+                isEditable: false,
+                isRequired,
+            };
+        }
 
         return {
             type: CheckoutStepType.Shipping,
             isActive: false,
             isComplete,
-            isEditable: isComplete && isRequired && !isCustomShippingSelected,
+            isEditable: isComplete && isRequired,
             isRequired,
         };
     },

@@ -184,21 +184,15 @@ const getShippingStepStatus = createSelector(
         // Popup shop: if shipping address is pre-set, lock the step so
         // customers cannot modify the address. If address is missing
         // (integration failure), fall back to the normal editable flow.
-        if (shippingAddress?.address1) {
-            return {
-                type: CheckoutStepType.Shipping,
-                isActive: false,
-                isComplete: true,
-                isEditable: false,
-                isRequired,
-            };
-        }
+        // Keep isComplete tied to real shipping state so the step
+        // reactivates when shipping options need re-selection.
+        const isPreSetAddress = !!shippingAddress?.address1;
 
         return {
             type: CheckoutStepType.Shipping,
             isActive: false,
             isComplete,
-            isEditable: isComplete && isRequired,
+            isEditable: isPreSetAddress ? false : isComplete && isRequired,
             isRequired,
         };
     },

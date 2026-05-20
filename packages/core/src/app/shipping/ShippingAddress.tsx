@@ -13,6 +13,8 @@ import React, { FunctionComponent, memo, useContext } from 'react';
 import { isPayPalFastlaneMethod, usePayPalFastlaneAddress } from '@bigcommerce/checkout/paypal-fastlane-integration';
 import { FormContext } from '@bigcommerce/checkout/ui';
 
+import { AddressType, StaticAddress } from '../address';
+
 import { AmazonPayShippingAddress } from './AmazonPayShippingAddress';
 import { PayPalFastlaneShippingAddress } from './PayPalFastlaneShippingAddress';
 import ShippingAddressForm from './ShippingAddressForm';
@@ -86,6 +88,18 @@ const ShippingAddress: FunctionComponent<ShippingAddressProps> = (props) => {
                 shippingAddress={shippingAddress}
             />
         )
+    }
+
+    // Popup shop: if shipping address is pre-set by the integration,
+    // show it as read-only so customers can't modify it. They can
+    // still re-select shipping options via the form footer below.
+    if (shippingAddress?.address1) {
+        return (
+            <StaticAddress
+                address={shippingAddress}
+                type={AddressType.Shipping}
+            />
+        );
     }
 
     return (

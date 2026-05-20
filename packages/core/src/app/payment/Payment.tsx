@@ -245,7 +245,8 @@ class Payment extends Component<
             error.type === 'payment_cancelled' ||
             error.type === 'payment_invalid_form' ||
             error.type === 'spam_protection_not_completed' ||
-            error.type === 'invalid_hosted_form_value'
+            error.type === 'invalid_hosted_form_value' ||
+            error.type === 'cart_changed'
         ) {
             return null;
         }
